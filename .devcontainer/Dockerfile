@@ -1,4 +1,6 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
+
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y \
     git make wget \
@@ -8,6 +10,8 @@ RUN apt-get update && apt-get install -y \
     language-pack-ja \
     xzdec \
     latexmk \
+    texlive-science \
+    texlive-science-doc \
     texlive-lang-cjk \
     texlive-latex-extra \
     texlive-extra-utils \
@@ -15,4 +19,5 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 RUN tlmgr init-usertree
+
 RUN kanji-config-updmap-sys ipaex
